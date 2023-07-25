@@ -3,12 +3,12 @@
 # Get the hostname of the system
 host_name=$(hostname)
 
-# Get the count of active containers using docker ps command
+# Get the count of active containers using container names
 # container_count=$(docker ps -q | wc -l)
 container_count=$(docker ps --format "table {{.Names}}" | wc -l)
 
 # Delete old tar files
-find /tmp/ -type f -name "*$hostname.tar" -mtime -1 -exec rm -rf {} \;
+find /tmp/ -type f -name "*$hostname.tar" -mtime +1 -exec rm -rf {} \;
 
 # Loop for each container
 # first docker ps output is column name, because of this, loop is from 2
