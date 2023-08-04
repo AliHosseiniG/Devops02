@@ -1,3 +1,9 @@
-docker_hw1.sh (the first Docker Homework): export all running containers as tar files and keep them only for 24 hours
+###########################################
+docker_hw1.sh (the first Docker Homework): 
 
-docker_hw2.sh (The second Docker Homework): show the number of different ip addresses that are visited the nginx website
+export all running containers as tar files and keep them only for 24 hours
+tar filename format: ContainerName_datetime_HostName.tar
+
+###########################################
+docker_hw2.sh (The second Docker Homework): 
+show the number of different ip addresses that are visited the nginx website
