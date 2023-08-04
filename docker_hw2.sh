@@ -21,6 +21,9 @@ time_24_hours_ago=$(date -u -d "24 hours ago" "+%Y-%m-%dT%H:%M:%S")
 total_count=$(docker logs $container_id | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {print $1}' | sort | uniq | wc -l)
 Last_24H_count=$(docker logs --since $time_24_hours_ago $container_id | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {print $1}' | sort | uniq | wc -l)
 
-echo "Total number of ip addresses: $total_count"
-echo "No of connections in the last 24 hours: $Last_24H_count"
+container_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_id)
+
+ 
+echo "Total number of ip addresses that connected to $container_IP: $total_count"
+echo "No of connections to $container_IP in the last 24 hours : $Last_24H_count"
 
