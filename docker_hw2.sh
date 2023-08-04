@@ -27,7 +27,7 @@ for ((i=1; i<=$number_of_nginx; i++)); do
 	# show the results
 	echo   # blank line
 
-	echo "container IP: $container_IP"
+	echo "NGINX IP: $container_IP"
 	echo "***************************************************"
 	echo "Total number of connected: $total_count"
 	echo "Number of connections in the last 24 hours: $Last_24H_count"
