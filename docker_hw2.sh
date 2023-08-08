@@ -25,7 +25,7 @@ for ((i=1; i<=$number_of_nginx; i++)); do
 	Last_24H_count=$(docker logs --since $time_24_hours_ago $container_id | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {print $1}' | sort | uniq | wc -l)
 
 	# show the results
-	echo   # blank line
+	echo   # blank line to show better
 
 	echo "NGINX IP: $container_IP"
 	echo "***************************************************"
