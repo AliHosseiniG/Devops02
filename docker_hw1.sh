@@ -17,13 +17,13 @@ for ((i=2; i<=$container_count; i++)); do
     # Extract container name 
     container_name=$(docker ps --format "table {{.Names}}" | sed -n "${i}p")
 
-
     # Combine the date/time and hostname
     current_datetime=$(date +"%Y%m%d_%H:%M:%S")
 
-    result="$container_name""_""${current_datetime}""_""${host_name}.tar"
-
+    result="$host_name""_""${container_name}_""${current_datetime}"".tar"
+    
     #export container as a tar file in /tmp/ 
     docker export $container_name >/tmp/$result
 
 done
+
