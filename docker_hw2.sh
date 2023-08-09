@@ -23,13 +23,26 @@ for ((i=1; i<=$number_of_nginx; i++)); do
 	# extract ip addresses that are connected
 	total_count=$(docker logs $container_id | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {print $1}' | sort | uniq | wc -l)
 	Last_24H_count=$(docker logs --since $time_24_hours_ago $container_id | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {print $1}' | sort | uniq | wc -l)
+	generate_date=$(date "+%Y-%m-%d %H:%M:%S")
 
 	# show the results
-	echo   # blank line to show better
-
+	echo   # blank line
 	echo "NGINX IP: $container_IP"
 	echo "***************************************************"
 	echo "Total number of connected: $total_count"
 	echo "Number of connections in the last 24 hours: $Last_24H_count"
+
+	# save the output in a file in a column format:
+	# DATE TIME  Webserver_IP  COUNT
+	
+	# create out file, if there is not exist!
+        if [ -z $(find . -name "output.txt") ]; then
+            
+            # create a title for every column in output file		
+	    echo -e "DateTime\t\tSite_IP\t\tCOUNT" > output.txt
+	fi
+	
+	echo -e "$generate_date\t$container_IP\t$Last_24H_count" >> output.txt
+	
 done
 
