@@ -6,4 +6,6 @@ tar filename format: ContainerName_datetime_HostName.tar
 
 ###########################################
 docker_hw2.sh (The second Docker Homework): 
+
 show the number of different ip addresses that are visited the nginx website
+output.txt is the out of the script, to use in a minitoring tools, for example Grafana and so on
